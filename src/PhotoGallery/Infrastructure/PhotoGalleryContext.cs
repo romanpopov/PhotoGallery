@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PhotoGallery.Entities;
 
 namespace PhotoGallery.Infrastructure
 {
