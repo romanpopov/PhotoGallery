@@ -113,7 +113,7 @@ namespace PhotoGallery.Infrastructure
                     UserId = 1 
                 }
             });
-                context.SaveChanges();
+                //context.SaveChanges();
             }
         }
     }

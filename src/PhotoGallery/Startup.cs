@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using PhotoGallery.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Serialization;
 using PhotoGallery.Infrastructure.Repositories;
-using PhotoGallery.Infrastructure.Services.Abstact;
 using PhotoGallery.Infrastructure.Services;
+using PhotoGallery.Infrastructure.Mappings;
 using System.Security.Claims;
 using System.IO;
+using Newtonsoft.Json.Serialization;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 
 namespace PhotoGallery
 {
@@ -62,8 +57,8 @@ namespace PhotoGallery
             services.AddScoped<ILoggingRepository, LoggingRepository>();
 
             // Services
-            services.AddScoped<IMembershipService, MembershipService>();
-            services.AddScoped<IEncryptionService, EncryptionService>();
+            services.AddScoped<PhotoGallery.Infrastructure.Services.Abstact.IMembershipService, MembershipService>();
+            services.AddScoped<PhotoGallery.Infrastructure.Services.Abstact.IEncryptionService, EncryptionService>();
 
             services.AddAuthentication();
 
@@ -107,7 +102,7 @@ namespace PhotoGallery
             _fileServerOptions.EnableDirectoryBrowsing = true;
             app.UseFileServer(_fileServerOptions);
 
-            AutoMapperConfiguration.Configure();
+            //AutoMapperConfiguration.Configure();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -133,16 +128,16 @@ namespace PhotoGallery
         }
 
         // Entry point for the application.
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-              .UseKestrel()
-              .UseContentRoot(Directory.GetCurrentDirectory())
-              .UseIISIntegration()
-              .UseStartup<Startup>()
-              .Build();
+        //public static void Main(string[] args)
+        //{
+        //    var host = new WebHostBuilder()
+        //      .UseKestrel()
+        //      .UseContentRoot(Directory.GetCurrentDirectory())
+        //      .UseIISIntegration()
+        //      .UseStartup<Startup>()
+        //      .Build();
 
-            host.Run();
-        }
+        //    host.Run();
+        //}
     }
 }
